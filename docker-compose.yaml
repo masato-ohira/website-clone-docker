@@ -1,0 +1,18 @@
+version: '3'
+services:
+  my-website:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        github_user: '${GITHUB_USER}'
+        github_token: '${GITHUB_TOKEN}'
+        github_repo: '${GITHUB_REPO}'
+    restart: "no"
+    tty: true
+    environment:
+      - "TZ=Japan"
+    ports:
+      - "${APP_PORT}:5000"
+    volumes:
+      - ./dist:/app/dist
